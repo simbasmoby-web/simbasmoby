@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title id="pageTitle">Авторская практика</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #333;
+      padding: 20px;
+    }
+    .container {
+      background: rgba(255,255,255,0.95);
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      max-width: 450px;
+      width: 100%;
+      text-align: center;
+      opacity: 0;
+      animation: fadeIn 0.9s ease-out forwards;
+    }
+    @keyframes fadeIn { to { opacity: 1; } }
+    h1 { font-size: 28px; margin-bottom: 10px; color: #2c3e50; }
+    .highlight { color: #e67e22; font-weight: bold; margin: 6px 0; display:block; }
+    p { font-size: 16px; margin: 8px 0; color: #333; }
+    .price { font-size: 24px; font-weight: bold; margin: 12px 0; color: #27ae60; }
+    .old-price { font-size: 16px; text-decoration: line-through; color: #888; margin-left: 10px; }
+    .btn {
+      display:inline-block; padding:12px 20px; margin-top:16px; font-size:16px;
+      color:#fff; background:#0070ba; border-radius:10px; text-decoration:none;
+      transition: .25s; cursor:pointer;
+    }
+    .btn:hover { transform: translateY(-4px); background:#005a9c; }
+  </style>
+</head>
+<body>
+  <div class="container" id="panel">
+    <h1 id="mainTitle">Загрузка...</h1>
+    <span id="highlight1" class="highlight"></span>
+    <p id="subtitle"></p>
+
+    <p class="price">
+      <span id="newPrice"></span>
+      <span class="old-price" id="oldPrice"></span>
+    </p>
+
+    <span id="highlight2" class="highlight"></span>
+
+    <a id="buyButton" class="btn" target="_blank" rel="noopener">Получить прямо сейчас</a>
+  </div>
+
+  <!-- подключаем сначала конфиг -->
+  <script src="config.js"></script>
+
+  <!-- основной скрипт -->
+  <script>
+    // Проверка наличия CONFIG
+    if (typeof CONFIG === 'undefined') {
+      console.error('CONFIG не найден. Проверьте наличие и синтаксис файла config.js');
+      document.getElementById('mainTitle').textContent = 'Ошибка загрузки конфигурации';
+    } else {
+      // Подставляем значения
+      try {
+        document.getElementById('pageTitle').textContent = CONFIG.pageTitle || 'Авторская практика';
+        document.title = CONFIG.pageTitle || document.title;
+
+        document.getElementById('mainTitle').textContent = CONFIG.mainTitle || '';
+        document.getElementById('highlight1').textContent = CONFIG.highlight1 || '';
+        document.getElementById('subtitle').textContent = CONFIG.subtitle || '';
+        document.getElementById('newPrice').textContent = CONFIG.newPrice || '';
+        document.getElementById('oldPrice').textContent = CONFIG.oldPrice || '';
+        document.getElementById('highlight2').textContent = CONFIG.highlight2 || '';
+
+        // Ссылка (если пустая — ставим #)
+        document.getElementById('buyButton').href = CONFIG.paymentLink || '#';
+
+        // Фон (если указан)
+        if (CONFIG.background) {
+          document.body.style.backgroundImage = `url("${CONFIG.background}")`;
+        }
+
+        // показываем панель (если скрыта)
+        document.getElementById('panel').style.opacity = '1';
+      } catch (e) {
+        console.error('Ошибка при подстановке конфигурации:', e);
+        document.getElementById('mainTitle').textContent = 'Ошибка при применении конфигурации';
+      }
+    }
+  </script>
+</body>
+</html>
