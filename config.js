@@ -7,8 +7,9 @@ const CONFIG = {
   newPrice: "149 грн",
   oldPrice: "2198 грн",
   highlight2: "Ціна однієї кави замість сессії з психологом",
-  paymentLink: "https://www.paypal.com/paypalme/вашаккаунт",
+  paymentLink: "https://psychologist-rumiantsevas-bot.tg.pulse.is",
   // background может быть относительным путём (content-images/background.jpg) или внешним URL
   background: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1470&q=80"
 };
+
 
