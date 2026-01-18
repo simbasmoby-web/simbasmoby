@@ -9,8 +9,9 @@ const CONFIG = {
   highlight2: "Ціна однієї кави замість сессії з психологом",
   paymentLink: "https://psychologist-rumiantsevas-bot.tg.pulse.is",
   // background может быть относительным путём (content-images/background.jpg) или внешним URL
-  background: "https://i.postimg.cc/VNYR1jcw/nm.jpg"
+  background: "https://i.postimg.cc/j5KSBBXK/Gemini-Generated-Image-4rytui4rytui4ryt.png"
 };
+
 
 
 
